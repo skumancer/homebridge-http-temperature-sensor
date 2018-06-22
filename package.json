@@ -1,6 +1,6 @@
 {
   "name": "homebridge-http-temperature-sensor",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Http temperature sensor for Homebridge",
   "license": "ISC",
   "keywords": [
@@ -8,10 +8,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Supereg/homebridge-http-temperature-sensor"
+    "url": "https://github.com/skumancer/homebridge-http-temperature-sensor"
   },
   "bugs": {
-    "url": "https://github.com/Supereg/homebridge-http-temperature-sensor/issues"
+    "url": "https://github.com/skumancer/homebridge-http-temperature-sensor/issues"
   },
   "engines": {
     "node": ">=0.12.0",

@@ -19,6 +19,7 @@ function HTTP_TEMPERATURE(log, config) {
     this.name = config.name;
 
     this.getUrl = config.getUrl;
+    this.Manufacturer = config.Manufacturer;
 
     this.homebridgeService = new Service.TemperatureSensor(this.name);
     this.homebridgeService.getCharacteristic(Characteristic.CurrentTemperature)
@@ -52,7 +53,7 @@ HTTP_TEMPERATURE.prototype = {
         const informationService = new Service.AccessoryInformation();
 
         informationService
-            .setCharacteristic(Characteristic.Manufacturer, "Andreas Bauer")
+            .setCharacteristic(Characteristic.Manufacturer, this.Manufacturer)
             .setCharacteristic(Characteristic.Model, "HTTP Temperature Sensor")
             .setCharacteristic(Characteristic.SerialNumber, "TS01")
             .setCharacteristic(Characteristic.FirmwareRevision, packageJSON.version);
@@ -79,10 +80,12 @@ HTTP_TEMPERATURE.prototype = {
 
     getTemperature: function (callback) {
         this._doRequest("getTemperature", this.getUrl, "GET", "getUrl", callback, function (body) {
-            const temperature = parseFloat(body);
+            
+            let temperature = parseFloat(body.split(":")[1]);
             this.log("temperature is currently at %s", temperature);
 
             callback(null, temperature);
+
         }.bind(this))
     },
 
